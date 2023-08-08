@@ -1,0 +1,2 @@
+select oid, typename from pg_type where oid = :oid_number
+select oid, relname  from pg_class where relname = :table_name
