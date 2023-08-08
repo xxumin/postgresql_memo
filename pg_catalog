@@ -1,3 +1,10 @@
-select oid, typename from pg_type where oid = :oid_number >> var/lib/postgresql/13/main/base
+# /var/lib/postgresql/13/main/base/pgsql_tmp
+# Postgres 임시파일을 저장하는 디렉토리(정렬, 해시 조인 등의 연산 수행시 임시파일 생성), 일부 백 및 복구 작업에도 임시파일 생성
 
-select oid, relname  from pg_class where relname = :table_name
+# /var/lib/postgresql/13/main/base
+# postgres 데이터베이스 클러스터 내의 모든 데이터 파일이 저장되는 디렉토리(테이블, 인덱스, 시퀀스 등 객체), 서브 디렉토리명은 Object ID 값으로 결정됨
+select oid, typename from pg_type
+where oid = :oid_number
+
+select oid, relname from pg_class
+where relname = :table_name
