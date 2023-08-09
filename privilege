@@ -1,0 +1,8 @@
+grant select on schema $schema_name to $user;
+grant select on all tables in schema $schema_name to $user;
+alter default privileges in schema $schema_name grant select on tables to $user;
+
+set role $user;
+
+select *
+from $schema_name.$table_name limit 1;
