@@ -1,0 +1,17 @@
+PGPASSWORD=${비밀번호}
+pg_dump --no-privileges --no-owner --verbose
+        -E UTF-8	# 인코딩
+        -Z 9		# 압축율
+        -h ${호스트 IP} -d ${데이터베이스명} -U ${계정}
+        -n ${덤프할 스키마}
+        -Fd      # 덤프 파일 포맷 (Fd = 디렉토리, Fp = SQL 스크립트:디폴트)
+        -j 20    # parallel jobs(병렬 작업, Fd 옵션일때만 사용가능)
+        -f ./${덤프파일이름}
+
+PGPASSWORD=${비밀번호}
+pg_restore  --disable-triggers --verbose
+            -h ${호스트 IP} -d ${데이터베이스명} -U ${계정}
+            -c			# drop and recreate
+            -Fd			# 덤프 파일 포맷
+            -j 20 		# parallel jobs(병렬 작업, Fd 옵션일때만 사용가능)
+            ./${덤프파일이름}
