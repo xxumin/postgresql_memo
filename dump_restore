@@ -1,3 +1,6 @@
+# pg_dump: https://www.postgresql.org/docs/current/app-pgdump.html
+# pg_restore: https://www.postgresql.org/docs/current/app-pgrestore.html
+
 PGPASSWORD=${비밀번호}
 pg_dump --no-privileges --no-owner --verbose
         -E UTF-8	# 인코딩
