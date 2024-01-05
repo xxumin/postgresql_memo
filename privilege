@@ -1,8 +1,11 @@
+# 권한 부여
 grant select on schema $schema_name to $user;
 grant select on all tables in schema $schema_name to $user;
 alter default privileges in schema $schema_name grant select on tables to $user;
 
 set role $user;
 
+# 권한 확인
 select *
-from $schema_name.$table_name limit 1;
+from information_schema.role_table_grants
+where grantee = 'fnetrole'
