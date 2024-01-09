@@ -27,3 +27,15 @@ begin
   where tbl_nm = tbl_name;
 end;
 $$ language plpgsql;
+
+create or replace procedure sp_all_tbl_cnt() as $$
+declare
+cnt_sql text;
+rtn_cnt int := 0;
+tbl1 varhar(100);
+begin
+  for tbl1 in select tbl_nm from ods.mig_list loop
+    call ods.sp_tbl_cnt(tbl1);
+  end loop;
+end;
+$$ language plpgsql;
